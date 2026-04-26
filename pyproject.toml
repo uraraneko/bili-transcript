@@ -1,0 +1,44 @@
+[project]
+name = "bili-transcript"
+version = "0.1.0"
+description = "Bilibili video subtitle extraction and transcription CLI"
+readme = "README.md"
+authors = [
+    { name = "uraraneko", email = "1165904981@qq.com" }
+]
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "faster-whisper>=1.1.1",
+    "pydantic>=2.11.4",
+    "rich>=14.0.0",
+    "yt-dlp>=2025.3.31",
+]
+
+[project.scripts]
+bili-transcript = "bili_transcript.cli:main"
+bt = "bili_transcript.cli:main"
+
+[dependency-groups]
+dev = [
+    "mypy>=1.15.0",
+    "pytest>=8.3.5",
+    "ruff>=0.11.8",
+    "types-yt-dlp>=2025.4.26",
+]
+
+[build-system]
+requires = ["uv_build>=0.11.5,<0.12.0"]
+build-backend = "uv_build"
+
+[tool.ruff]
+line-length = 100
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+packages = ["bili_transcript"]
+mypy_path = ["src"]
+
+[[tool.mypy.overrides]]
+module = "faster_whisper"
+ignore_missing_imports = true
