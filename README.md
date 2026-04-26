@@ -10,7 +10,6 @@ B站视频字幕提取与转写工具。
 - 转码层：ffmpeg 提取/转为标准 wav
 - 识别层：优先读取现成字幕；无字幕则用 faster-whisper 转写
 - 输出层：生成 txt / srt / json
-- 可选增强：pydantic（配置/数据模型）、rich/typer（CLI 体验）、httpx（补充请求）
 
 ## 技术栈
 
@@ -19,7 +18,6 @@ B站视频字幕提取与转写工具。
 - yt-dlp
 - ffmpeg
 - faster-whisper
-- 可选：typer、rich、pydantic、httpx
 
 ## 安装
 
@@ -37,3 +35,32 @@ uv run bili-transcript --help
 uv run bili-transcript "https://www.bilibili.com/video/BV1UyDzBpEeo/"
 uv run bt "https://www.bilibili.com/video/BV1UyDzBpEeo/"
 ```
+
+## 其他常用命令
+
+最简用法：
+
+```bash
+uv run bili-transcript "https://www.bilibili.com/video/BV1UyDzBpEeo/" --cookies-from-browser chrome
+```
+
+输出全部格式：
+
+```bash
+uv run bili-transcript "https://www.bilibili.com/video/BV1UyDzBpEeo/" -f all -o "./output" --cookies-from-browser chrome
+```
+
+强制走音频转写：
+
+```bash
+uv run bili-transcript "https://www.bilibili.com/video/BV1UyDzBpEeo/" --force-whisper --cookies-from-browser chrome
+```
+
+## 常用参数
+
+- `-f, --format`：输出格式，可选 `txt`、`srt`、`json`、`all`
+- `-o, --output`：输出目录
+- `--cookies-from-browser`：从浏览器读取 cookies，例如 `chrome`
+- `--force-whisper`：忽略现成字幕，强制下载音频并转写
+- `-m, --model`：Whisper 模型大小，如 `base`、`small`
+- `-l, --lang`：识别语言，默认 `auto`
