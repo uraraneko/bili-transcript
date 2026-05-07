@@ -64,3 +64,7 @@ uv run bili-transcript "https://www.bilibili.com/video/BV1UyDzBpEeo/" --force-wh
 - `--force-whisper`：忽略现成字幕，强制下载音频并转写
 - `-m, --model`：Whisper 模型大小，如 `base`、`small`
 - `-l, --lang`：识别语言，默认 `auto`
+
+## AI Skill
+
+本项目附带一个 AI agent skill（`.skills/fetching-bilibili-transcripts/`），可让 AI 编码助手（如 CodeFlicker/KwaiPilot）自动识别用户意图并调用本工具获取 B 站视频文字稿。将 skill 目录复制到 `~/.agents/skills/` 即可启用。
